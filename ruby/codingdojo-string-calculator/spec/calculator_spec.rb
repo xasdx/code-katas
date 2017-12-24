@@ -30,4 +30,15 @@ RSpec.describe Calculator, "#add" do
   it "rejects misplaced separators" do
     expect { @calc.add("1\n,2") }.to raise_error(ArgumentError)
   end
+  
+  it "handles custom separators specified as '//[separator]\\n[numbers]'" do
+    [
+      ["//;\n1;2", 3],
+      ["//|\n1|2|3", 6],
+      ["//h\n3.4h3h1", 7.4],
+      ["//h\n3h2\n1", 6]
+    ].each do |input, expected|
+      expect(@calc.add(input)).to eq expected
+    end
+  end
 end
