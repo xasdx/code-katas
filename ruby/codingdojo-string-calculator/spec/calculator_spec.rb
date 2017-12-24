@@ -17,4 +17,9 @@ RSpec.describe Calculator, "#add" do
   it "returns zero when called with an empty string" do
     expect(@calc.add("")).to eq 0
   end
+  
+  it "returns the sum of variable number of arguments" do
+    numbers = [3, 4, 5.0, 6.66, 0.25]
+    expect(@calc.add(numbers.join ",")).to eq numbers.sum
+  end
 end
