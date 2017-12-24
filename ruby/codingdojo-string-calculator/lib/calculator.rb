@@ -14,10 +14,16 @@ class Calculator
   def sum(str, separator = ",")
     splitter = Regexp.new('[' + separator + '\n]')
     
-    str.split(splitter)
+    numbers = str.split(splitter)
       .each { |n| raise ArgumentError.new("Invalid use of separators") if n.empty? }
       .map(&:to_f)
-      .sum
+    
+    if numbers.any? { |n| n < 0 }
+      negatives = numbers.select { |n| n < 0 }
+      raise ArgumentError.new("Negative numbers are not allowed: #{negatives.join(', ')}")
+    end
+      
+    numbers.sum
   end
   
   def parse_custom_separator(input)

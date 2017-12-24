@@ -41,4 +41,8 @@ RSpec.describe Calculator, "#add" do
       expect(@calc.add(input)).to eq expected
     end
   end
+  
+  it "rejects negative numbers" do
+    expect { @calc.add("1,2.5,-3.2,4,-5.0") }.to raise_error(ArgumentError, /-3.2, -5.0$/)
+  end
 end
