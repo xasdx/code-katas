@@ -1,5 +1,6 @@
 class Calculator
+  
   def add(numbers)
-    return 4.2
+    numbers.split(",").map(&:to_f).reduce(0, :+)
   end
 end
