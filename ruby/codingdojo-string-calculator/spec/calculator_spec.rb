@@ -22,4 +22,12 @@ RSpec.describe Calculator, "#add" do
     numbers = [3, 4, 5.0, 6.66, 0.25]
     expect(@calc.add(numbers.join ",")).to eq numbers.sum
   end
+  
+  it "handles new lines characters as separators" do
+    expect(@calc.add("1\n2,3")).to eq 6
+  end
+  
+  it "rejects misplaced separators" do
+    expect { @calc.add("1\n,2") }.to raise_error(ArgumentError)
+  end
 end
