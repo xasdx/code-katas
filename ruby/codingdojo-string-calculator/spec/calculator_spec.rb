@@ -1,6 +1,6 @@
 require "calculator"
 
-RSpec.describe Calculator, "#add" do
+RSpec.describe Calculator do
   
   before :example do
     @calc = Calculator.new
@@ -18,7 +18,7 @@ RSpec.describe Calculator, "#add" do
     expect(@calc.add("")).to eq 0
   end
   
-  it "returns the sum of variable number of arguments" do
+  it "returns the sum of a variable number of arguments" do
     numbers = [3, 4, 5.0, 6.66, 0.25]
     expect(@calc.add(numbers.join ",")).to eq numbers.sum
   end
@@ -44,5 +44,9 @@ RSpec.describe Calculator, "#add" do
   
   it "rejects negative numbers" do
     expect { @calc.add("1,2.5,-3.2,4,-5.0") }.to raise_error(ArgumentError, /-3.2, -5.0$/)
+  end
+  
+  it "returns the product of an arbitrary number of arguments" do
+    expect(@calc.multiply("3,4,5.7")).to eq 68.4
   end
 end

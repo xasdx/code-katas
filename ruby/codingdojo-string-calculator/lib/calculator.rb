@@ -35,12 +35,22 @@ end
 class Calculator
   
   def add(input)
-    numbers = CalculatorInput.new(input).numbers
-    assert_no_negatives numbers
+    numbers = parse_numbers input
     return numbers.sum
   end
   
+  def multiply(input)
+    numbers = parse_numbers input
+    return numbers.reduce &:*
+  end
+  
   private
+  
+  def parse_numbers(input)
+    numbers = CalculatorInput.new(input).numbers
+    assert_no_negatives numbers
+    numbers
+  end
   
   def assert_no_negatives(numbers)
     if numbers.any? { |n| n < 0 }
