@@ -23,7 +23,7 @@ RSpec.describe Calculator, "#add" do
     expect(@calc.add(numbers.join ",")).to eq numbers.sum
   end
   
-  it "handles new lines characters as separators" do
+  it "handles new line characters as separators" do
     expect(@calc.add("1\n2,3")).to eq 6
   end
   
