@@ -1,8 +1,10 @@
-let rejectZero = (n) => {
-  if (n === 0) {
-    throw new RangeError("Cannot convert zero to a roman number")
+let rejectInvalidNumbers = (n) => {
+  if (n <= 0 || n > 3000) {
+    throw new RangeError(`Cannot convert ${n} to a roman number. Must be in range (0..3000].`)
   }
 }
+
+let reject
 
 let countDigits = (n) => [
   ["M", Math.floor(n / 1000)],
@@ -16,7 +18,7 @@ let countDigits = (n) => [
 
 module.exports = {
   toRoman: (n) => {
-    rejectZero(n)
+    rejectInvalidNumbers(n)
     return countDigits(n).reduce((acc, current) => `${acc}${current[0].repeat(current[1])}`, "")
   }
 }

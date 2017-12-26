@@ -20,6 +20,8 @@ test("converts numbers to their one-digit roman equal", t => [
   { decimal: 1000, roman: "M" }
 ].forEach(({ decimal, roman }) => t.is(toRoman(decimal), roman)))
 
-test("converts 2678 to roman number", t => {
-  t.is(toRoman(2678), "MMDCLXXVIII")
-})
+test("converts 2678 to a roman number", t => t.is(toRoman(2678), "MMDCLXXVIII"))
+
+test("rejects numbers > 3000", t => t.throws(() => toRoman(3001), RangeError))
+
+test("converts 3000 to a roman number", t => t.is(toRoman(3000), "MMM"))
