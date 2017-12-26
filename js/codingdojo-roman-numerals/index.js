@@ -4,8 +4,6 @@ let rejectInvalidNumbers = (n) => {
   }
 }
 
-let reject
-
 let countDigits = (n) => [
   ["M", Math.floor(n / 1000)],
   ["D", Math.floor(n % 1000 / 500)],
