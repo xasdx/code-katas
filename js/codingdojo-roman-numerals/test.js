@@ -19,3 +19,7 @@ test("converts numbers to their one-digit roman equal", t => [
   { decimal: 500, roman: "D" },
   { decimal: 1000, roman: "M" }
 ].forEach(({ decimal, roman }) => t.is(toRoman(decimal), roman)))
+
+test("converts 2678 to roman number", t => {
+  t.is(toRoman(2678), "MMDCLXXVIII")
+})
