@@ -33,5 +33,6 @@ module.exports = {
   toRoman: (n) => {
     rejectInvalidNumbers(n)
     return countDigits(n).reduce(romanReducer, "")
-  }
+  },
+  toDecimal: (str) => {}
 }

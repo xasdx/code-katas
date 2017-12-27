@@ -2,9 +2,12 @@ let test = require("ava")
 let underTest = require(".")
 
 let toRoman = underTest.toRoman
+let toDecimal = underTest.toDecimal
 
 let cases = {
   zero: { n: 0, r: RangeError },
+  empty: { n: RangeError, r: "" },
+  invalid: { n: RangeError, r: "MMDCLXKXVIII" },
   one: { n: 1, r: "I" },
   three: { n: 3, r: "III" },
   four: { n: 4, r: "IV" },
@@ -28,6 +31,8 @@ let cases = {
   ]
 }
 
+// toRoman
+
 test("rejects zero", t => t.throws(() => toRoman(cases.zero.n), cases.zero.r))
 
 test("converts decimal 1 to roman I", t => t.is(toRoman(cases.one.n), cases.one.r))
@@ -47,3 +52,15 @@ test("converts 3000 to a roman number", t => t.is(toRoman(cases.threeK.n), cases
 
 test("converts random numbers",
       t => cases.random.forEach(({ n, r }) => t.is(toRoman(n), r)))
+
+// toDecimal
+
+test("rejects empty string", t => t.throws(() => toDecimal(cases.empty.r), cases.empty.n))
+
+test("rejects strings containing invalid characters", t => t.throws(() => toDecimal(cases.invalid.r), cases.invalid.n))
+
+test("converts roman I to decimal 1", t => t.is(toDecimal(cases.one.r), cases.one.n))
+
+test("converts romans to their one-digit decimal equal",
+      t => cases.digit.forEach(({ n, r }) => t.is(toDecimal(r), n)))
+
