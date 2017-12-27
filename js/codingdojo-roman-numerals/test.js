@@ -57,7 +57,8 @@ test("converts random numbers",
 
 test("rejects empty string", t => t.throws(() => toDecimal(cases.empty.r), cases.empty.n))
 
-test("rejects strings containing invalid characters", t => t.throws(() => toDecimal(cases.invalid.r), cases.invalid.n))
+test("rejects strings containing invalid characters",
+      t => t.throws(() => toDecimal(cases.invalid.r), cases.invalid.n))
 
 test("converts roman I to decimal 1", t => t.is(toDecimal(cases.one.r), cases.one.n))
 
