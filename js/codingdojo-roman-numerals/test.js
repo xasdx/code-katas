@@ -50,7 +50,7 @@ test("rejects numbers > 3000", t => t.throws(() => toRoman(cases.overThreeK.n), 
 
 test("converts 3000 to a roman number", t => t.is(toRoman(cases.threeK.n), cases.threeK.r))
 
-test("converts random numbers",
+test("converts random numbers to roman",
       t => cases.random.forEach(({ n, r }) => t.is(toRoman(n), r)))
 
 // toDecimal
@@ -65,3 +65,11 @@ test("converts roman I to decimal 1", t => t.is(toDecimal(cases.one.r), cases.on
 test("converts romans to their one-digit decimal equal",
       t => cases.digit.forEach(({ n, r }) => t.is(toDecimal(r), n)))
 
+test("converts III to 3", t => t.is(toDecimal(cases.three.r), cases.three.n))
+
+test("converts IV to 4", t => t.is(toDecimal(cases.four.r), cases.four.n))
+
+test("converts IX to 9", t => t.is(toDecimal(cases.nine.r), cases.nine.n))
+
+test("converts random numbers to decimal",
+      t => cases.random.forEach(({ n, r }) => t.is(toDecimal(r), n)))

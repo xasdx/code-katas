@@ -8,9 +8,9 @@ let reduceNine = (index, array, acc) => `${acc.slice(0, -1)}${array[index][0]}${
 
 let reduceNumber = (current, acc) => `${acc}${current[0].repeat(current[1])}`
 
-let romanReducer = (acc, current, index, array) => 
-                    isFour(current, index, array) ? reduceFour(index, array, acc) :
-                    isNine(current, index, array) ? reduceNine(index, array, acc) :
-                                                    reduceNumber(current, acc)
+let reducer = (acc, current, index, array) => 
+                isFour(current, index, array) ? reduceFour(index, array, acc) :
+                isNine(current, index, array) ? reduceNine(index, array, acc)
+                                              : reduceNumber(current, acc)
 
-module.exports = romanReducer
+module.exports = reducer

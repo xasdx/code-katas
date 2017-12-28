@@ -1,4 +1,5 @@
 let romanReducer = require("./roman-reducer")
+let decimalReducer = require("./decimal-reducer")
 
 let rejectInvalidDecimalNumbers = (n) => {
   if (n <= 0 || n > 3000) {
@@ -24,16 +25,6 @@ let countRomanDigits = (n) => [
   ["I", Math.floor(n % 5)]
 ]
 
-let romanToDecimal = {
-  "M": 1000,
-  "D": 500,
-  "C": 100,
-  "L": 50,
-  "X": 10,
-  "V": 5,
-  "I": 1
-}
-
 module.exports = {
   toRoman: (n) => {
     rejectInvalidDecimalNumbers(n)
@@ -41,6 +32,6 @@ module.exports = {
   },
   toDecimal: (str) => {
     rejectInvalidRomanNumbers(str)
-    return str.split("").reduce((acc, actual) => acc + romanToDecimal[actual], 0)
+    return str.split("").reverse().reduce(decimalReducer, 0)
   }
 }
