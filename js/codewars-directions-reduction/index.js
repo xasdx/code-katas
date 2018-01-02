@@ -1,17 +1,9 @@
-let directions = {
-  h: { a: "EAST",  b: "WEST"  },
-  v:   { a: "NORTH", b: "SOUTH" }
-}
+let oppositeDirection = { "EAST": "WEST", "WEST": "EAST", "NORTH": "SOUTH", "SOUTH": "NORTH" }
 
-let isOpposite = (a, b) => a === directions.h.a && b === directions.h.b ||
-                           a === directions.h.b && b === directions.h.a ||
-                           a === directions.v.a && b === directions.v.b ||
-                           a === directions.v.b && b === directions.v.a
-
-let removeNeedlessStep = directions => {
+let reduceDirection = directions => {
   let didRemove = false
   directions.forEach((value, index, array) => {
-    if (isOpposite(value, array[index + 1])) {
+    if (value === oppositeDirection[array[index + 1]]) {
       array.splice(index, 2)
       didRemove = true
     }
@@ -19,6 +11,6 @@ let removeNeedlessStep = directions => {
   return didRemove
 }
 
-let dirReduc = directions => !removeNeedlessStep(directions) ? directions : dirReduc(directions)
+let dirReduc = directions => !reduceDirection(directions) ? directions : dirReduc(directions)
 
 module.exports = dirReduc
