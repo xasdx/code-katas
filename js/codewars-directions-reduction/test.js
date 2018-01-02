@@ -7,4 +7,4 @@ let cases = [
   { input: ["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"], result: [] }
 ]
 
-test("reduces directions", t => cases.forEach((input, res) => t.is(underTest(input), res))
+test("reduces directions", t => cases.forEach(testCase => t.deepEqual(underTest(testCase.input), testCase.result)))
