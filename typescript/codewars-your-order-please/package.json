@@ -1,0 +1,20 @@
+{
+  "name": "codewars-your-order-please",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --forceExit"
+  },
+  "dependencies": {
+    "jest": "^22.1.4",
+    "ts-jest": "^22.0.1",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts"],
+    "transform": {
+      "\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "^((?!c9).)*/codewars-your-order-please/test.ts$"
+  }
+}
