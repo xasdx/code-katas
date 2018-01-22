@@ -1,5 +1,7 @@
 # codewars-your-order-please
 
+> For the original problem, see: codewars.com/kata/your-order-please
+
 ## Problem Description
 
 Your task is to sort a given string. Each word in the String will contain a single number. This number is the position the word should have in the result.
