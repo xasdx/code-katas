@@ -1,6 +1,6 @@
-let orderOf = (word: string) => /([1-9])/.exec(word)
+let orderOf = (word: string) => Number(/(\d)/.exec(word)[0])
 
-let comparator = (a: string, b: string) => orderOf(a) < orderOf(b) ? -1 : orderOf(a) > orderOf(b) ? 1 : 0
+let comparator = (a: string, b: string) => orderOf(a) - orderOf(b)
 
 let f = (words: string) => words.split(" ").sort(comparator).join(" ")
 
