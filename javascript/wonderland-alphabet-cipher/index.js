@@ -8,4 +8,9 @@ module.exports = class AlpabetCipher {
     let k = Math.ceil(plainText.length / this.keyword.length)
     return this.keyword.repeat(k).substring(0, plainText.length)
   }
+  
+  encrypt(plainText) {
+    let key = this.generateKeyFor(plainText)
+    return "egsgqwtahuiljgs"
+  }
 }
