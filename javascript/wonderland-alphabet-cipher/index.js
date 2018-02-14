@@ -1,4 +1,5 @@
 let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
+
 let alphabeticalCharacters = /^[a-z]*$/
 
 let generateKey = (plainText, keyword) => {
@@ -7,7 +8,7 @@ let generateKey = (plainText, keyword) => {
   return keyword.repeat(k).substring(0, plainText.length)
 }
 
-module.exports = class AlpabetCipher {
+class AlphabetCipher {
   
   constructor(keyword) {
     this.keyword = keyword.toLowerCase()
@@ -26,3 +27,8 @@ module.exports = class AlpabetCipher {
     }).join("")
   }
 }
+
+module.exports = {
+  Cipher: AlphabetCipher,
+  generateKey
+} 
