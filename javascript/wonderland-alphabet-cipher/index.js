@@ -1,21 +1,24 @@
 let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
+let alphabeticalCharacters = /^[a-z]*$/
+
+let generateKey = (plainText, keyword) => {
+  if (plainText.length < 1 || keyword.length < 1) { return "" }
+  let k = Math.ceil(plainText.length / keyword.length)
+  return keyword.repeat(k).substring(0, plainText.length)
+}
 
 module.exports = class AlpabetCipher {
   
   constructor(keyword) {
-    if (!/^[a-zA-Z]*$/.test(keyword)) { throw new Error("The keyword may only contain alphabetical characters") }
-    this.keyword = keyword
-  }
-  
-  generateKeyFor(plainText) {
-    let k = Math.ceil(plainText.length / this.keyword.length)
-    return this.keyword.repeat(k).substring(0, plainText.length)
+    this.keyword = keyword.toLowerCase()
+    if (!alphabeticalCharacters.test(this.keyword)) { throw new Error("The keyword may only contain alphabetical characters") }
   }
   
   encrypt(plainText) {
-    if (!/^[a-zA-Z]*$/.test(plainText)) { throw new Error("The plain test may only contain alphabetical characters") }
+    plainText = plainText.toLowerCase()
+    if (!alphabeticalCharacters.test(plainText)) { throw new Error("The plain test may only contain alphabetical characters") }
     let plain = plainText.split("")
-    let key = this.generateKeyFor(plainText)
+    let key = generateKey(plainText, this.keyword)
     return key.split("").map((keyChar, index) => {
       let i = keyChar.charCodeAt(0) - 96
       let j = plain[index].charCodeAt(0) - 96
