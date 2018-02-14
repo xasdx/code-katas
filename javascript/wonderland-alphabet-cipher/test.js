@@ -26,3 +26,12 @@ test("handles empty string as keyword", t => {
   let key = underTest.generateKeyFor("")
   t.is(key, "")
 })
+
+test("rejects non-alphabetical characters when encrypting", t => {
+  let underTest = new AlpabetCipher("scones")
+  t.throws(() => underTest.encrypt("hello3"))
+})
+
+test("rejects non-alphabetical characters in the keyword", t => {
+  t.throws(() => new AlpabetCipher("sc1"))
+})

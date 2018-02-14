@@ -3,6 +3,7 @@ let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
 module.exports = class AlpabetCipher {
   
   constructor(keyword) {
+    if (!/^[a-zA-Z]*$/.test(keyword)) { throw new Error("The keyword may only contain alphabetical characters") }
     this.keyword = keyword
   }
   
@@ -12,6 +13,7 @@ module.exports = class AlpabetCipher {
   }
   
   encrypt(plainText) {
+    if (!/^[a-zA-Z]*$/.test(plainText)) { throw new Error("The plain test may only contain alphabetical characters") }
     let plain = plainText.split("")
     let key = this.generateKeyFor(plainText)
     return key.split("").map((keyChar, index) => {
