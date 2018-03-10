@@ -11,6 +11,9 @@ class MorseDecoderTest(unittest.TestCase):
   def test_decodes_a_sentence(self):
     decoder = MorseDecoder()
     self.assertEqual(decoder.decode(".... . -.--   .--- ..- -.. ."), "HEY JUDE")
+  def test_handles_trailing_whitespaces(self):
+    decoder = MorseDecoder()
+    self.assertEqual(decoder.decode("   .--- ..- -.. .     "), "JUDE")
 
 if __name__ == "__main__":
   unittest.main()

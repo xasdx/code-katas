@@ -38,5 +38,9 @@ morse_codes = {
 }
 
 class MorseDecoder:
+  
   def decode(self, code):
-    return " ".join(["".join([morse_codes.get(character) for character in word.split(" ")]) for word in code.split("   ")])
+    return " ".join([self.decode_word(word) for word in code.strip().split("   ")])
+    
+  def decode_word(self, word):
+    return "".join([morse_codes[character] for character in word.split(" ")])
